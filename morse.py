@@ -39,10 +39,12 @@ class Ui_Code(object):
                 decode = [".-" ,"-...", "-.-.", "-.." ,"." "...-.", "--.", "...." ,".." ,".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-." ,"..." ,"-", "..-" ,"...-" ,".--", "-..-", "-.--", "--.."," "]
                 keys = dict(zip(encode , decode))
 
-                encode_code = self.codeTextArea.toPlainText()
+                encode_code = self.codeTextArea.toPlainText().encode("utf-8")
                 output = " "
                 for letter in encode_code:
-                        output = output + " " + keys[letter]
+                        if(letter!=" "):
+
+                                output = output + " " + keys[letter]
                 self.outputLabel.setText(output)
                 print("Inside encode function. : " + output )
 
@@ -126,7 +128,7 @@ class Ui_Code(object):
                 self.decode.setObjectName("decode")
                
                 self.codeTextArea = QtWidgets.QTextEdit(self.centralwidget)
-                font.setPointSize(16)
+                font.setPointSize(12)
                 self.codeTextArea.setFont(font)
                 self.codeTextArea.setGeometry(QtCore.QRect(200, 120, 291, 51))
                 self.codeTextArea.setStyleSheet("background:black;\n"
@@ -158,7 +160,7 @@ class Ui_Code(object):
                 self.outputLabel = QtWidgets.QLabel(self.centralwidget)
                 self.outputLabel.setGeometry(QtCore.QRect(200, 280, 291, 41))
                 font = QtGui.QFont()
-                font.setPointSize(18)
+                font.setPointSize(14)
                 self.outputLabel.setFont(font)
                 self.outputLabel.setStyleSheet("color:white;")
                 self.outputLabel.setObjectName("outputLabel")
@@ -176,8 +178,8 @@ class Ui_Code(object):
                  _translate = QtCore.QCoreApplication.translate
                  Code.setWindowTitle(_translate("Code", "MainWindow"))
                  self.selectedCode.setItemText(0, _translate("Code", "Morse Code"))
-                 self.selectedCode.setItemText(1, _translate("Code", "Foobar"))
-                 self.selectedCode.setItemText(2, _translate("Code", "Foobar 2"))
+                 self.selectedCode.setItemText(1, _translate("Code", "Another code"))
+                 self.selectedCode.setItemText(2, _translate("Code", "Code3"))
                  self.encode.setText(_translate("Code", "Encode"))
                  self.decode.setText(_translate("Code", "Decode"))
                  self.codeTextViewLabel.setText(_translate("Code", "Enter code"))
